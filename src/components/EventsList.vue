@@ -3,17 +3,17 @@
     <h1>Events</h1>
     <ul>
      
-      
-      <li  v-for="event in events" :key = "event.id">
+      <li  
+      v-for="event in events" 
+      :key = "event.id"
+      >
         <router-link :to="{ name: 'eventPage', params: {id: event.id}}">
-          {{event.id}}. Event: {{event.title}}. Date: {{event.date}}. Time: {{event.time}}. 
+          {{ event.id }}. Event: {{ event.title }}. Date: {{ event.date }}. Time: {{ event.time }}. 
         </router-link> 
       </li>
-  
-
-      
 
     </ul>
+    <router-view :events="events" />
   </div>
 </template>
 
@@ -23,18 +23,16 @@ export default{
   data() {
     return {
       events: []
-    }},
-  mounted() {
-  fetch('./db.json')
-  .then(response => response.json())
-  .then(json => {
-    setTimeout(()=>{
-    this.events = json.events;
-    }, 500)})
+    };
   },
-  props: {
-    event: {
-      type: Object
+  mounted() {
+  this.fetchEvents();
+  },
+  methods: {
+    fetchEvents() {
+      fetch('./db.json')
+      .then(response => response.json())
+      .then(json => this.events = json.events)
     }
   },
 }
