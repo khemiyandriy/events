@@ -4,12 +4,14 @@
     <ul>
      
       <li  
-      v-for="event in events" 
+      v-for="event in getEvents" 
       :key = "event.id"
       >
         <router-link :to="{ name: 'eventPage', params: {id: event.id}}">
           {{ event.id }}. Event: {{ event.title }}. Date: {{ event.date }}. Time: {{ event.time }}. 
+          <button :id='event.id' @click = deleteEvent(event.id)>X</button>
         </router-link> 
+        
       </li>
 
     </ul>
@@ -18,24 +20,19 @@
 </template>
 
 <script>
+import {mapGetters} from 'vuex'
 export default{
-  
-  data() {
-    return {
-      events: []
-    };
-  },
-  mounted() {
-  this.fetchEvents();
-  },
-  methods: {
-    fetchEvents() {
-      fetch('./db.json')
-      .then(response => response.json())
-      .then(json => this.events = json.events)
+  computed: mapGetters(['getEvents']),
+methods: {
+    deleteEvent(id){
+      this.$store.commit('DELETE_EVENTS', id)
     }
-  },
-}
+
+  }
+  
+  }
+  
+
   
 
 </script>

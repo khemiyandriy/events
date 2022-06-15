@@ -1,12 +1,21 @@
 <template>
     <div v-if="event" class="form">
       <h2>{{event.title}}</h2>
-    <div
-      v-for="(value, key, index) in event"
-      :key="index"
+    <div 
+      v-for="(value, key) in event"
+      :key="key"
     >   
-    
-      <div class="form__item" v-if="key !== 'attendees'">
+      <div class="form__item" v-if="key == 'id'">
+      <label 
+      :for="key">{{key}}
+      </label>
+
+      <input disabled
+      type="text" 
+      id="key" 
+      v-model="event[key]">
+      </div>
+      <div class="form__item" v-else-if="key !== 'attendees' && key !== 'id'">
 
       <label 
       :for="key">{{key}}
@@ -19,7 +28,7 @@
 
       </div> 
 
-      <ul v-else >
+      <ul v-else>
         <p>Attendees</p>
         <li class="form__item"
           v-for="(attendee, index) in value"
@@ -43,10 +52,14 @@
 </template>
 
 <script>
+import { mapGetters  } from 'vuex';
 export default{
     props: ['id', 'events'],
     computed: {
-    event() {return this.events[this.id-1]
+      ...mapGetters(['getEventById']),
+    event() {
+      return this.getEventById(Number(this.id));
+      
     }
     },
 
@@ -75,5 +88,6 @@ ul{
   font-size: 14px;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
+
 
 </style>

@@ -16,6 +16,12 @@
 
 <script>
 
+export default{
+  name: 'app',
+    async mounted(){
+    this.$store.dispatch('fetchEvents')
+  }
+  }
 </script>
 
 <style>
