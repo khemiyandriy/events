@@ -9,18 +9,41 @@
 
 
  <h1>App router</h1>
+ <LoaderSpiner v-if="isLoading"/>
  <router-view></router-view>
 </div>
 
 </template>
 
 <script>
+import axios from "axios"
+import {mapMutations, mapGetters} from 'vuex';
+import LoaderSpiner from "@/components/LoaderSpiner"
 
 export default{
   name: 'app',
-    async mounted(){
-    this.$store.dispatch('fetchEvents')
-  }
+
+  mounted() {
+    axios
+        /* this.$store.dispatch('fetchEvents') */
+          .get('http://localhost:3000/events')
+          .then(response => this.SET_EVENTS(response.data))
+          .catch(error => {console.log(error)})
+          .finally(() => this.SET_LOADING_STATUS())
+  },
+
+  computed: {
+      isLoading() {
+        return this.getLoading()
+      }
+  },
+
+  methods: {
+    ...mapMutations(['SET_LOADING_STATUS', 'SET_EVENTS']),
+    ...mapGetters(['getLoading'])
+  },
+
+  components: {LoaderSpiner}
   }
 </script>
 

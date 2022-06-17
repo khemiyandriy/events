@@ -74,7 +74,7 @@ export default{
       ...mapMutations(['CREATE_EVENT']),
       submit(){
         let newArray = [];
-        this.attendees.split(' ').map(element => {
+        this.attendees.replace(/\s+/g, ' ').trim().split(' ').map(element => {
             newArray.push({ id: Date.now() + Math.round(Math.random()*1000), name: element})
           });
         this.CREATE_EVENT({

@@ -54,7 +54,7 @@
 <script>
 import { mapGetters  } from 'vuex';
 export default{
-    props: ['id', 'events'],
+    props: ['id'],
     computed: {
       ...mapGetters(['getEventById']),
     event() {

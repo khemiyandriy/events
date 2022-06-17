@@ -1,7 +1,9 @@
+/* import axios from "axios" */
+  
   export default{
     state () {
       return {
-        isLoading: false,
+        isLoading: true,
         events: []
       }
     },
@@ -14,17 +16,19 @@
         console.log(state.events)
       },
       DELETE_EVENTS(state, id){
-        const targetEventIndex = state.events.findIndex((el) => el.id == id)
+        const targetEventIndex = state.events.findIndex((el) => el.id === id)
         state.events.splice(targetEventIndex, 1)
       },
       CREATE_EVENT(state, newEvent){
         state.events.push(newEvent)
         console.log(newEvent)
-      }
-    },
+      }},
     getters: {
       getEvents(state) {
         return state.events
+      },
+      getLoading(state){
+        return state.isLoading
       },
       getEventById (state) {
         return id => {
@@ -34,13 +38,13 @@
     }
     },
     actions: {
-        fetchEvents(context) {
-            context.commit('SET_LOADING_STATUS')
-            fetch('./db.json')
-            .then(response => response.json())
-            .then(json => context.commit('SET_EVENTS', json.events))
-            console.log(this.state.events)
-        }
+        /* fetchEvents(mutations) {
+          axios
+          .get('http://localhost:3000/events')
+          .then(response => mutations.SET_EVENTS(response.data))
+          .catch(error => {console.log(error)})
+          .finally(() => mutations.SET_LOADING_STATUS())
+        } */
     }/* ,
     namespaced: true */
   }
