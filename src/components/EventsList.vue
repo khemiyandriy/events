@@ -1,15 +1,19 @@
 <template>
   <div>
     <h1>Events</h1>
-    <ul>
+    <ul class="event_list">
      
       <li  
       v-for="event in paginetedEvents" 
       :key = "event.id"
       >
         <router-link :to="{ name: 'eventPage', params: {id: event.id}}">
-          {{ event.id }}. Event: {{ event.title }}. Date: {{ event.date }}. Time: {{ event.time }}. 
-          <button :id='event.id' @click = deleteEvent(event.id)>X</button>
+          <div class="event">
+            <button class="event__button" :id='event.id' @click = deleteEvent(event.id)>X</button>
+            <p class="event__text">{{event.id}}. {{ event.title }}</p>
+            <p class="event__text">{{ event.date }}</p>
+            <p class="event__text">{{ event.time }}</p>
+            </div>
         </router-link> 
         
       </li>
@@ -71,9 +75,38 @@ export default{
     text-align: left;
     margin: 10px;
     }
-    .events_pagination{
-      margin: 10px 50px;
+    a{
+       text-decoration: none;
+    }
+    .event_list{
       display: flex;
+      justify-content: space-around;
+    }
+  .event{
+    border: 1px solid black;
+    background: #fff;
+    width: 300px;
+    padding: 20px;
+    position: relative;
+    border-radius: 30px 0 30px 0;
+    box-shadow:10px 10px 25px #333333;
+  }
+  .event:hover{
+    background: rgb(185, 250, 223);
+  }
+  .event__button{
+    position: absolute;
+    right: 20px;
+    top: 20px;
+    background: rgb(249, 134, 134);
+  }
+  .event__text{
+    color: black;
+  }
+
+    .events_pagination{
+      display: flex;
+      justify-content: center;
     }
     .page{
       margin: 10px;
@@ -82,6 +115,9 @@ export default{
       font-size: 16px;
       background: beige;
       border-radius: 10px;
+    }
+    .page:hover{
+      background:rgb(94, 172, 94);
     }
     .active{
       background:darkseagreen;

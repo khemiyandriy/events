@@ -25,7 +25,6 @@ export default{
 
   mounted() {
     axios
-        /* this.$store.dispatch('fetchEvents') */
           .get('http://localhost:3000/events')
           .then(response => this.SET_EVENTS(response.data))
           .catch(error => {console.log(error)})
