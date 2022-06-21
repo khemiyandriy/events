@@ -56,7 +56,7 @@ export default{
 
   methods: {
     deleteEvent(id){
-      this.$store.commit('DELETE_EVENTS', id)
+      this.$store.dispatch('DELETE_EVENTS', id)
     },
 
     pageClick(page){

@@ -48,20 +48,27 @@
         
 
     </div>
+    <button @click = Update>Update Event</button>
   </div>
 </template>
 
 <script>
-import { mapGetters  } from 'vuex';
+import {/*  mapActions, */ mapGetters  } from 'vuex';
 export default{
     props: ['id'],
     computed: {
-      ...mapGetters(['getEventById']),
+      ...mapGetters(['getEventById']),/* 
+      ...mapActions(['UPDATE_EVENT']), */
     event() {
       return this.getEventById(Number(this.id));
       
     }
     },
+    methods: {
+      Update() {
+        this.$store.dispatch('UPDATE_EVENT', this.event)
+      }
+    }
 
 }
 

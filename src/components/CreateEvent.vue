@@ -56,7 +56,8 @@
 </template>
 
 <script>
-import {mapMutations} from 'vuex';
+import {/* mapMutations, */ mapActions} from 'vuex';
+/* import axios from 'axios'; */
 export default{
   data(){
     return{
@@ -70,8 +71,9 @@ export default{
       attendees: '',
     }
   },
-    methods: {
-      ...mapMutations(['CREATE_EVENT']),
+    methods: {/* 
+      ...mapMutations(['CREATE_EVENT']), */
+      ...mapActions(['CREATE_EVENT']),
       submit(){
         let newArray = [];
         this.attendees.replace(/\s+/g, ' ').trim().split(' ').map(element => {
@@ -87,7 +89,11 @@ export default{
           organizer: this.organizer,
           category: this.category,
           attendees: newArray
-        });
+        })/* . then(()=> {
+          axios.get('http://localhost:3000/events')
+          .then(response => this.SET_EVENTS(response.data))
+          .catch(error => {console.log(error)})
+          .finally(() => this.SET_LOADING_STATUS())}) */
         this.title = this.date = this.time = this.location = this.description = this.organizer = this.category = this.attendees = ""
       }
     }
