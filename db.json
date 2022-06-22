@@ -233,22 +233,6 @@
       "attendees": []
     },
     {
-      "id": 1655761572494,
-      "title": "asdfASDF",
-      "date": "2022-06-03",
-      "time": "xc\\vzxASDFSADF",
-      "location": "asdfsdafssadf",
-      "description": "asdfasdf",
-      "organizer": "asdfasdfafsASDF",
-      "category": "asdfasdfASDF",
-      "attendees": [
-        {
-          "id": 1655761572507,
-          "name": "sadf sdaf as"
-        }
-      ]
-    },
-    {
       "id": 1655761972725,
       "title": "SADFDSAF",
       "date": "4648-05-21",
@@ -261,6 +245,22 @@
         {
           "id": 1655761973711,
           "name": "DFA"
+        }
+      ]
+    },
+    {
+      "id": 1655900266784,
+      "title": "asdf",
+      "date": "45489-12-12",
+      "time": "12:54",
+      "location": "fass",
+      "description": "fds",
+      "organizer": "dfasds",
+      "category": "dfasdsfads",
+      "attendees": [
+        {
+          "id": 1655900267462,
+          "name": "fdasds"
         }
       ]
     }
