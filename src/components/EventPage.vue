@@ -53,12 +53,11 @@
 </template>
 
 <script>
-import {/*  mapActions, */ mapGetters  } from 'vuex';
+import {mapGetters  } from 'vuex';
 export default{
     props: ['id'],
     computed: {
-      ...mapGetters(['getEventById']),/* 
-      ...mapActions(['UPDATE_EVENT']), */
+      ...mapGetters(['getEventById']),
     event() {
       return this.getEventById(Number(this.id));
       

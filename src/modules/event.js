@@ -13,22 +13,8 @@ import axios from "axios"
       },
       SET_EVENTS(state, events){
         state.events = events
-        console.log(state.events)
       },
-      /* DELETE_EVENTS(state, id){
-        const targetEventIndex = state.events.findIndex((el) => el.id === id)
-        state.events.splice(targetEventIndex, 1)
-      }, */
-      /* CREATE_EVENT(state, newEvent){
-        axios.post('http://localhost:3030/events', {
-          body: newEvent,
-         });
-        }, */
-/* 
-
-        state.events.push(newEvent)
-        console.log(newEvent) 
-      }*/},
+      },
     getters: {
       getEvents(state) {
         return state.events
@@ -41,6 +27,7 @@ import axios from "axios"
             return state.events.find(event => event.id === id)
         }
 
+
     }
     },
     actions: {
@@ -52,15 +39,13 @@ import axios from "axios"
         },
 
           CREATE_EVENT(context, newEvent){
-          console.log(newEvent);
           axios.post('http://localhost:3000/events/', newEvent)
           .catch(error => {console.log(error)})
           .then((response) => {
           if (response.status === 201) {context.dispatch('GET_EVENTS_FROM_API')}})
         },
         
-          DELETE_EVENTS(context, id){/* 
-            const targetEventIndex = context.events.findIndex((el) => el.id === id) */
+          DELETE_EVENTS(context, id){
             axios.delete('http://localhost:3000/events/' + id)
             .catch(error => {console.log(error)})
             .then((response) => {
@@ -72,17 +57,10 @@ import axios from "axios"
           .catch(error => {console.log(error)})
           .then((response) => {
             if (response.status === 200) {context.dispatch('GET_EVENTS_FROM_API')}})
-        }
+        },
+
       
-        /* fetchEvents(mutations) {
-          axios
-          .get('http://localhost:3000/events')
-          .then(response => mutations.SET_EVENTS(response.data))
-          .catch(error => {console.log(error)})
-          .finally(() => mutations.SET_LOADING_STATUS())
-        } */
-    }/* ,
-    namespaced: true */
+    }
   }
  
  

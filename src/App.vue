@@ -15,21 +15,14 @@
 
 </template>
 
-<script>/* 
-import axios from "axios" */
+<script>
 import {mapActions, mapMutations, mapGetters} from 'vuex';
 import LoaderSpiner from "@/components/LoaderSpiner"
 
 export default{
   name: 'app',
-
   mounted() {
     this.GET_EVENTS_FROM_API()
-    /* axios
-          .get('http://localhost:3000/events')
-          .then(response => this.SET_EVENTS(response.data))
-          .catch(error => {console.log(error)})
-          .finally(() => this.SET_LOADING_STATUS()) */
   },
 
   computed: {

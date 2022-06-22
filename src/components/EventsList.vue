@@ -35,7 +35,7 @@
 </template>
 
 <script>
-import {mapGetters} from 'vuex'
+import {mapGetters, mapActions} from 'vuex'
 export default{
   data() {
     return{
@@ -43,7 +43,7 @@ export default{
       pageNumber: 1
     }
   },
-
+ props: ['events'],
   computed: {pages(){
     return Math.ceil(this.getEvents.length / this.eventsPerPage)
   },
@@ -53,6 +53,7 @@ export default{
     return this.getEvents.slice(from, to)
   },
   ...mapGetters(['getEvents'])},
+  ...mapActions(['GET_EVENTS_FOR_PAGE']),
 
   methods: {
     deleteEvent(id){
